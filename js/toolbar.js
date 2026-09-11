@@ -1,11 +1,10 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Toolbar Module
  Version : 2.0
 =================================================
 */
-
 
 // =========================================
 // Initialize Toolbar
@@ -16,9 +15,6 @@ function initializeToolbar() {
     bindToolbarEvents();
 
 }
-
-
-
 
 // =========================================
 // Bind All Toolbar Events
@@ -34,8 +30,6 @@ function bindToolbarEvents() {
 
     );
 
-
-
     bindButton(
 
         "diffBtn",
@@ -43,8 +37,6 @@ function bindToolbarEvents() {
         toggleDiffMode
 
     );
-
-
 
     bindButton(
 
@@ -58,8 +50,6 @@ function bindToolbarEvents() {
 
     );
 
-
-
     bindButton(
 
         "downloadBtn",
@@ -72,8 +62,6 @@ function bindToolbarEvents() {
 
     );
 
-
-
     bindButton(
 
         "resetBtn",
@@ -82,16 +70,11 @@ function bindToolbarEvents() {
 
     );
 
-
-
     bindLanguageChange();
 
     bindThemeChange();
 
 }
-
-
-
 
 // =========================================
 // Generic Button Binder
@@ -100,8 +83,6 @@ function bindToolbarEvents() {
 function bindButton(id, callback) {
 
     const button = document.getElementById(id);
-
-
 
     if (!button) {
 
@@ -117,8 +98,6 @@ function bindButton(id, callback) {
 
     }
 
-
-
     button.addEventListener(
 
         "click",
@@ -128,9 +107,6 @@ function bindButton(id, callback) {
     );
 
 }
-
-
-
 
 // =========================================
 // Reset Project
@@ -146,11 +122,7 @@ function resetProject() {
 
             clearAllEditors();
 
-
-
             resetStatistics();
-
-
 
             notifySuccess(
 
@@ -164,9 +136,6 @@ function resetProject() {
 
 }
 
-
-
-
 // =========================================
 // Language Change
 // =========================================
@@ -179,15 +148,11 @@ function bindLanguageChange() {
 
     );
 
-
-
     if (!select) {
 
         return;
 
     }
-
-
 
     select.addEventListener(
 
@@ -207,9 +172,6 @@ function bindLanguageChange() {
 
 }
 
-
-
-
 // =========================================
 // Theme Change
 // =========================================
@@ -222,15 +184,11 @@ function bindThemeChange() {
 
     );
 
-
-
     if (!select) {
 
         return;
 
     }
-
-
 
     select.addEventListener(
 
@@ -249,9 +207,6 @@ function bindThemeChange() {
     );
 
 }
-
-
-
 
 // =========================================
 // Enable Toolbar
@@ -275,9 +230,6 @@ function enableToolbar() {
 
 }
 
-
-
-
 // =========================================
 // Disable Toolbar
 // =========================================
@@ -300,9 +252,6 @@ function disableToolbar() {
 
 }
 
-
-
-
 // =========================================
 // Toolbar State
 // =========================================
@@ -323,9 +272,6 @@ function setToolbarState(enabled) {
 
 }
 
-
-
-
 // =========================================
 // Add Shortcut Support
 // =========================================
@@ -337,7 +283,6 @@ function initializeShortcuts() {
         "keydown",
 
         function (event) {
-
 
             // Ctrl + Enter => Compare
 
@@ -355,8 +300,6 @@ function initializeShortcuts() {
 
             }
 
-
-
             // Ctrl + D => Diff
 
             if (
@@ -372,8 +315,6 @@ function initializeShortcuts() {
                 toggleDiffMode();
 
             }
-
-
 
             // Ctrl + Shift + C => Copy
 

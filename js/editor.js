@@ -1,11 +1,10 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Editor Module
  Version : 2.1 Refactored
 =================================================
 */
-
 
 // =========================================
 // Editor Constants
@@ -15,25 +14,17 @@ const LEFT = "left";
 
 const RIGHT = "right";
 
-
-
-
 // =========================================
 // Diff Editor Reference
 // =========================================
 
 let diffEditor = null;
 
-
-
-
-
 // =========================================
 // Create Editors
 // =========================================
 
 function createEditors() {
-
 
     if (typeof monaco === "undefined") {
 
@@ -43,11 +34,7 @@ function createEditors() {
 
     }
 
-
-
     createModels();
-
-
 
     App.editor.left = createEditor(
 
@@ -57,8 +44,6 @@ function createEditors() {
 
     );
 
-
-
     App.editor.right = createEditor(
 
         "editor2",
@@ -67,21 +52,13 @@ function createEditors() {
 
     );
 
-
-
 }
-
-
-
-
-
 
 // =========================================
 // Create Monaco Models
 // =========================================
 
 function createModels() {
-
 
     App.model.left =
 
@@ -93,8 +70,6 @@ function createModels() {
 
         );
 
-
-
     App.model.right =
 
         monaco.editor.createModel(
@@ -105,13 +80,7 @@ function createModels() {
 
         );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Create Editor Instance
@@ -125,7 +94,6 @@ function createEditor(
 
 ) {
 
-
     const container =
 
         document.getElementById(
@@ -133,8 +101,6 @@ function createEditor(
             containerId
 
         );
-
-
 
     if (!container) {
 
@@ -150,68 +116,45 @@ function createEditor(
 
     }
 
-
-
-
     return monaco.editor.create(
 
         container,
 
         {
 
-
             model: model,
-
 
             theme:
 
                 App.state.theme,
 
-
-
             fontSize:
 
                 App.config.fontSize,
-
-
 
             tabSize:
 
                 App.config.tabSize,
 
-
-
             insertSpaces:
 
                 App.config.insertSpaces,
 
-
-
             automaticLayout: true,
-
-
 
             minimap: {
 
-
                 enabled: true
-
 
             },
 
-
-
             wordWrap: "on",
 
-
-
             scrollBeyondLastLine: false
-
 
         }
 
     );
-
 
 }
 
@@ -221,48 +164,35 @@ function createEditor(
 
 function registerEditorEvents() {
 
-
     if (!App.editor.left || !App.editor.right) {
 
         return;
 
     }
 
-
-
     App.editor.left.onDidChangeModelContent(
 
         function () {
 
-
             updateStatistics();
-
 
         }
 
     );
-
-
 
     App.editor.right.onDidChangeModelContent(
 
         function () {
 
-
             updateStatistics();
-
 
         }
 
     );
 
-
-
-
     App.editor.left.onDidChangeCursorPosition(
 
         function () {
-
 
             updateCursorPosition(
 
@@ -270,17 +200,13 @@ function registerEditorEvents() {
 
             );
 
-
         }
 
     );
 
-
-
     App.editor.right.onDidChangeCursorPosition(
 
         function () {
-
 
             updateCursorPosition(
 
@@ -288,18 +214,11 @@ function registerEditorEvents() {
 
             );
 
-
         }
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Language
@@ -307,22 +226,15 @@ function registerEditorEvents() {
 
 function setLanguage(language) {
 
-
     if (!language) {
 
         return;
 
     }
 
-
-
     App.state.language = language;
 
-
-
-
     if (App.model.left) {
-
 
         monaco.editor.setModelLanguage(
 
@@ -332,15 +244,9 @@ function setLanguage(language) {
 
         );
 
-
     }
 
-
-
-
-
     if (App.model.right) {
-
 
         monaco.editor.setModelLanguage(
 
@@ -350,12 +256,7 @@ function setLanguage(language) {
 
         );
 
-
     }
-
-
-
-
 
     const status =
 
@@ -365,26 +266,15 @@ function setLanguage(language) {
 
         );
 
-
-
     if (status) {
-
 
         status.innerText =
 
             language;
 
-
     }
 
-
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Editor Theme
@@ -392,14 +282,11 @@ function setLanguage(language) {
 
 function setEditorTheme(theme) {
 
-
     if (typeof monaco === "undefined") {
 
         return;
 
     }
-
-
 
     monaco.editor.setTheme(
 
@@ -407,17 +294,9 @@ function setEditorTheme(theme) {
 
     );
 
-
-
     App.state.theme = theme;
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Font Size
@@ -425,10 +304,7 @@ function setEditorTheme(theme) {
 
 function setFontSize(size) {
 
-
     size = Number(size);
-
-
 
     if (isNaN(size)) {
 
@@ -436,16 +312,9 @@ function setFontSize(size) {
 
     }
 
-
-
-
     App.config.fontSize = size;
 
-
-
-
     if (App.editor.left) {
-
 
         App.editor.left.updateOptions({
 
@@ -453,14 +322,9 @@ function setFontSize(size) {
 
         });
 
-
     }
 
-
-
-
     if (App.editor.right) {
-
 
         App.editor.right.updateOptions({
 
@@ -468,15 +332,9 @@ function setFontSize(size) {
 
         });
 
-
     }
 
-
-
-
-
     if (diffEditor) {
-
 
         diffEditor.updateOptions({
 
@@ -484,16 +342,9 @@ function setFontSize(size) {
 
         });
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Layout Editors
@@ -501,43 +352,25 @@ function setFontSize(size) {
 
 function layoutEditors() {
 
-
-
     if (App.editor.left) {
-
 
         App.editor.left.layout();
 
-
     }
-
-
 
     if (App.editor.right) {
 
-
         App.editor.right.layout();
 
-
     }
-
-
 
     if (diffEditor) {
 
-
         diffEditor.layout();
-
 
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Update Cursor Position
@@ -545,12 +378,9 @@ function layoutEditors() {
 
 function updateCursorPosition(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -558,24 +388,15 @@ function updateCursorPosition(side) {
 
     }
 
-
-
-
     const position =
 
         editor.getPosition();
-
-
-
 
     if (!position) {
 
         return;
 
     }
-
-
-
 
     const element =
 
@@ -585,10 +406,7 @@ function updateCursorPosition(side) {
 
         );
 
-
-
     if (element) {
-
 
         element.innerText =
 
@@ -606,9 +424,7 @@ function updateCursorPosition(side) {
 
             position.column;
 
-
     }
-
 
 }
 
@@ -618,14 +434,11 @@ function updateCursorPosition(side) {
 
 function getEditor(side) {
 
-
     if (side === LEFT) {
 
         return App.editor.left;
 
     }
-
-
 
     if (side === RIGHT) {
 
@@ -633,15 +446,9 @@ function getEditor(side) {
 
     }
 
-
-
     return null;
 
 }
-
-
-
-
 
 // =========================================
 // Get Model By Side
@@ -649,14 +456,11 @@ function getEditor(side) {
 
 function getModel(side) {
 
-
     if (side === LEFT) {
 
         return App.model.left;
 
     }
-
-
 
     if (side === RIGHT) {
 
@@ -664,16 +468,9 @@ function getModel(side) {
 
     }
 
-
-
     return null;
 
 }
-
-
-
-
-
 
 // =========================================
 // Get Code
@@ -681,12 +478,9 @@ function getModel(side) {
 
 function getCode(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -694,17 +488,9 @@ function getCode(side) {
 
     }
 
-
-
     return editor.getValue();
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Set Code
@@ -712,12 +498,9 @@ function getCode(side) {
 
 function setCode(side, value) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -725,21 +508,13 @@ function setCode(side, value) {
 
     }
 
-
-
     editor.setValue(
 
         value || ""
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Silent Set Value
@@ -747,20 +522,15 @@ function setCode(side, value) {
 
 function setValueSilent(side, value) {
 
-
     const model =
 
         getModel(side);
-
-
 
     if (!model) {
 
         return;
 
     }
-
-
 
     model.pushEditOperations(
 
@@ -774,16 +544,13 @@ function setValueSilent(side, value) {
 
                     model.getFullModelRange(),
 
-
                 text:
 
                     value || ""
 
-
             }
 
         ],
-
 
         function () {
 
@@ -793,20 +560,13 @@ function setValueSilent(side, value) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Clear Single Editor
 // =========================================
 
 function clearEditor(side) {
-
 
     setCode(
 
@@ -816,13 +576,7 @@ function clearEditor(side) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Clear All Editors
@@ -830,14 +584,11 @@ function clearEditor(side) {
 
 function clearAllEditors() {
 
-
     clearEditor(
 
         LEFT
 
     );
-
-
 
     clearEditor(
 
@@ -845,13 +596,7 @@ function clearAllEditors() {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Undo
@@ -859,15 +604,11 @@ function clearAllEditors() {
 
 function undo(side) {
 
-
     const editor =
 
         getEditor(side);
 
-
-
     if (editor) {
-
 
         editor.trigger(
 
@@ -879,16 +620,9 @@ function undo(side) {
 
         );
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Redo
@@ -896,15 +630,11 @@ function undo(side) {
 
 function redo(side) {
 
-
     const editor =
 
         getEditor(side);
 
-
-
     if (editor) {
-
 
         editor.trigger(
 
@@ -916,16 +646,9 @@ function redo(side) {
 
         );
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Select All
@@ -933,15 +656,11 @@ function redo(side) {
 
 function selectAll(side) {
 
-
     const editor =
 
         getEditor(side);
 
-
-
     if (editor) {
-
 
         editor.trigger(
 
@@ -953,16 +672,9 @@ function selectAll(side) {
 
         );
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Copy Selection
@@ -970,20 +682,15 @@ function selectAll(side) {
 
 function copySelection(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
         return;
 
     }
-
-
 
     editor.trigger(
 
@@ -995,7 +702,6 @@ function copySelection(side) {
 
     );
 
-
 }
 
 // =========================================
@@ -1003,7 +709,6 @@ function copySelection(side) {
 // =========================================
 
 function createDiffEditor() {
-
 
     const container =
 
@@ -1013,24 +718,17 @@ function createDiffEditor() {
 
         );
 
-
-
     if (!container) {
 
         return;
 
     }
 
-
-
     if (diffEditor) {
 
         return;
 
     }
-
-
-
 
     diffEditor =
 
@@ -1040,37 +738,27 @@ function createDiffEditor() {
 
             {
 
-
                 theme:
 
                     App.state.theme,
-
-
 
                 fontSize:
 
                     App.config.fontSize,
 
-
-
                 automaticLayout: true,
-
-
 
                 readOnly: true,
 
+                ignoreTrimWhitespace: true,
 
+                diffAlgorithm: "advanced",
 
                 renderSideBySide: true
-
 
             }
 
         );
-
-
-
-
 
     diffEditor.setModel({
 
@@ -1078,21 +766,13 @@ function createDiffEditor() {
 
             App.model.right,
 
-
         modified:
 
             App.model.left
 
-
     });
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Show Diff Editor
@@ -1100,7 +780,6 @@ function createDiffEditor() {
 
 function showDiffEditor() {
 
-
     const container =
 
         document.getElementById(
@@ -1109,21 +788,13 @@ function showDiffEditor() {
 
         );
 
-
-
     if (!container) {
 
         return;
 
     }
 
-
-
-
     createDiffEditor();
-
-
-
 
     container.classList.remove(
 
@@ -1131,22 +802,13 @@ function showDiffEditor() {
 
     );
 
-
-
-
     if (diffEditor) {
 
         diffEditor.layout();
 
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Hide Diff Editor
@@ -1154,7 +816,6 @@ function showDiffEditor() {
 
 function hideDiffEditor() {
 
-
     const container =
 
         document.getElementById(
@@ -1163,15 +824,11 @@ function hideDiffEditor() {
 
         );
 
-
-
     if (!container) {
 
         return;
 
     }
-
-
 
     container.classList.add(
 
@@ -1179,20 +836,13 @@ function hideDiffEditor() {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Toggle Diff Editor
 // =========================================
 
 function toggleDiffEditor() {
-
 
     const container =
 
@@ -1202,15 +852,11 @@ function toggleDiffEditor() {
 
         );
 
-
-
     if (!container) {
 
         return;
 
     }
-
-
 
     if (
 
@@ -1222,36 +868,21 @@ function toggleDiffEditor() {
 
     ) {
 
-
         showDiffEditor();
 
-
-
         App.state.diffMode = true;
-
-
 
     }
 
     else {
 
-
         hideDiffEditor();
-
-
 
         App.state.diffMode = false;
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Insert Text
@@ -1259,12 +890,9 @@ function toggleDiffEditor() {
 
 function insertText(side, text) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -1272,13 +900,9 @@ function insertText(side, text) {
 
     }
 
-
-
     const selection =
 
         editor.getSelection();
-
-
 
     editor.executeEdits(
 
@@ -1288,16 +912,13 @@ function insertText(side, text) {
 
             {
 
-
                 range:
 
                     selection,
 
-
                 text:
 
                     text
-
 
             }
 
@@ -1305,20 +926,13 @@ function insertText(side, text) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Replace Selection
 // =========================================
 
 function replaceSelection(side, text) {
-
 
     insertText(
 
@@ -1328,13 +942,7 @@ function replaceSelection(side, text) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Set Read Only
@@ -1342,20 +950,15 @@ function replaceSelection(side, text) {
 
 function setReadOnly(side, value) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
         return;
 
     }
-
-
 
     editor.updateOptions({
 
@@ -1365,13 +968,7 @@ function setReadOnly(side, value) {
 
     });
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Is Read Only
@@ -1379,12 +976,9 @@ function setReadOnly(side, value) {
 
 function isReadOnly(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -1392,21 +986,13 @@ function isReadOnly(side) {
 
     }
 
-
-
     return editor.getOption(
 
         monaco.editor.EditorOption.readOnly
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Dispose Editors
@@ -1414,78 +1000,45 @@ function isReadOnly(side) {
 
 function disposeEditors() {
 
-
     if (diffEditor) {
-
 
         diffEditor.dispose();
 
-
         diffEditor = null;
 
-
     }
-
-
-
 
     if (App.editor.left) {
 
-
         App.editor.left.dispose();
-
 
         App.editor.left = null;
 
-
     }
-
-
-
-
 
     if (App.editor.right) {
 
-
         App.editor.right.dispose();
-
 
         App.editor.right = null;
 
-
     }
-
-
-
-
 
     if (App.model.left) {
 
-
         App.model.left.dispose();
-
 
         App.model.left = null;
 
-
     }
-
-
-
-
 
     if (App.model.right) {
 
-
         App.model.right.dispose();
-
 
         App.model.right = null;
 
-
     }
-
-
 
 }
 
@@ -1495,12 +1048,9 @@ function disposeEditors() {
 
 function getEditorState(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -1508,22 +1058,15 @@ function getEditorState(side) {
 
     }
 
-
-
     const model =
 
         getModel(side);
 
-
-
     return {
-
 
         value:
 
             editor.getValue(),
-
-
 
         language:
 
@@ -1537,8 +1080,6 @@ function getEditorState(side) {
 
                 null,
 
-
-
         lineCount:
 
             model
@@ -1551,28 +1092,17 @@ function getEditorState(side) {
 
                 0,
 
-
-
         position:
 
             editor.getPosition(),
-
-
 
         readOnly:
 
             isReadOnly(side)
 
-
     };
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Get Editor Actions
@@ -1580,12 +1110,9 @@ function getEditorState(side) {
 
 function getEditorActions(side) {
 
-
     const editor =
 
         getEditor(side);
-
-
 
     if (!editor) {
 
@@ -1593,46 +1120,31 @@ function getEditorActions(side) {
 
     }
 
-
-
     return editor.getSupportedActions()
 
         .map(function (action) {
 
-
             return {
-
 
                 id:
 
                     action.id,
 
-
-
                 label:
 
                     action.label
 
-
             };
-
 
         });
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Get Current Editor
 // =========================================
 
 function getCurrentEditor() {
-
 
     if (
 
@@ -1646,8 +1158,6 @@ function getCurrentEditor() {
 
     }
 
-
-
     if (
 
         App.editor.right &&
@@ -1660,17 +1170,9 @@ function getCurrentEditor() {
 
     }
 
-
-
     return LEFT;
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Focus Editor
@@ -1678,35 +1180,23 @@ function getCurrentEditor() {
 
 function focusEditor(side) {
 
-
     const editor =
 
         getEditor(side);
 
-
-
     if (editor) {
-
 
         editor.focus();
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Enable Editor
 // =========================================
 
 function enableEditor(side) {
-
 
     setReadOnly(
 
@@ -1716,20 +1206,13 @@ function enableEditor(side) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Disable Editor
 // =========================================
 
 function disableEditor(side) {
-
 
     setReadOnly(
 
@@ -1739,13 +1222,7 @@ function disableEditor(side) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Get Editor Line Count
@@ -1753,12 +1230,9 @@ function disableEditor(side) {
 
 function getEditorLineCount(side) {
 
-
     const model =
 
         getModel(side);
-
-
 
     if (!model) {
 
@@ -1766,17 +1240,9 @@ function getEditorLineCount(side) {
 
     }
 
-
-
     return model.getLineCount();
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Get Editor Language
@@ -1784,12 +1250,9 @@ function getEditorLineCount(side) {
 
 function getEditorLanguage(side) {
 
-
     const model =
 
         getModel(side);
-
-
 
     if (!model) {
 
@@ -1797,17 +1260,9 @@ function getEditorLanguage(side) {
 
     }
 
-
-
     return model.getLanguageId();
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Editor Statistics Helpers
@@ -1815,12 +1270,9 @@ function getEditorLanguage(side) {
 
 function getLineCount(side) {
 
-
     const model =
 
         getModel(side);
-
-
 
     if (!model) {
 
@@ -1828,33 +1280,21 @@ function getLineCount(side) {
 
     }
 
-
-
     return model.getLineCount();
-
 
 }
 
-
-
-
-
 function getWordCount(side) {
-
 
     const code =
 
         getCode(side);
-
-
 
     if (!code.trim()) {
 
         return 0;
 
     }
-
-
 
     return code
 
@@ -1864,43 +1304,25 @@ function getWordCount(side) {
 
         .length;
 
-
 }
 
-
-
-
-
-
 function getCharacterCount(side) {
-
 
     const code =
 
         getCode(side);
 
-
-
     return code.length;
-
 
 }
 
-
-
-
-
-
 function getFormattedTextSize(text) {
-
 
     if (!text) {
 
         return "0 B";
 
     }
-
-
 
     const bytes =
 
@@ -1910,15 +1332,11 @@ function getFormattedTextSize(text) {
 
         ).size;
 
-
-
     if (bytes < 1024) {
 
         return bytes + " B";
 
     }
-
-
 
     if (bytes < 1024 * 1024) {
 
@@ -1934,8 +1352,6 @@ function getFormattedTextSize(text) {
 
     }
 
-
-
     return (
 
         bytes /
@@ -1948,12 +1364,7 @@ function getFormattedTextSize(text) {
 
         " MB";
 
-
 }
-
-
-
-
 
 // =========================================
 // Copy Editor Content
@@ -1961,15 +1372,11 @@ function getFormattedTextSize(text) {
 
 async function copyEditor(side) {
 
-
     const text =
 
         getCode(side);
 
-
-
     if (!text) {
-
 
         if (typeof notifyWarning === "function") {
 
@@ -1981,15 +1388,11 @@ async function copyEditor(side) {
 
         }
 
-
         return;
 
     }
 
-
-
     try {
-
 
         await navigator.clipboard.writeText(
 
@@ -1997,10 +1400,7 @@ async function copyEditor(side) {
 
         );
 
-
-
         if (typeof notifySuccess === "function") {
-
 
             notifySuccess(
 
@@ -2008,16 +1408,11 @@ async function copyEditor(side) {
 
             );
 
-
         }
-
-
 
     }
 
-
     catch (error) {
-
 
         console.error(
 
@@ -2027,16 +1422,9 @@ async function copyEditor(side) {
 
         );
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Download Editor Content
@@ -2044,12 +1432,9 @@ async function copyEditor(side) {
 
 function downloadEditor(side) {
 
-
     const text =
 
         getCode(side);
-
-
 
     if (!text) {
 
@@ -2063,12 +1448,9 @@ function downloadEditor(side) {
 
         }
 
-
         return;
 
     }
-
-
 
     const blob =
 
@@ -2090,8 +1472,6 @@ function downloadEditor(side) {
 
         );
 
-
-
     const url =
 
         URL.createObjectURL(
@@ -2099,8 +1479,6 @@ function downloadEditor(side) {
             blob
 
         );
-
-
 
     const link =
 
@@ -2110,21 +1488,13 @@ function downloadEditor(side) {
 
         );
 
-
-
     link.href = url;
-
-
 
     link.download =
 
         "code.txt";
 
-
-
     link.click();
-
-
 
     URL.revokeObjectURL(
 
@@ -2132,13 +1502,7 @@ function downloadEditor(side) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Editor API
@@ -2146,104 +1510,70 @@ function downloadEditor(side) {
 
 const EditorAPI = {
 
-
     createEditors,
-
 
     registerEditorEvents,
 
-
     getEditor,
-
 
     getModel,
 
-
     getCode,
-
 
     setCode,
 
-
     setValueSilent,
-
 
     clearEditor,
 
-
     clearAllEditors,
-
 
     setLanguage,
 
-
     setEditorTheme,
-
 
     setFontSize,
 
-
     layoutEditors,
-
 
     updateCursorPosition,
 
-
     createDiffEditor,
-
 
     showDiffEditor,
 
-
     hideDiffEditor,
-
 
     toggleDiffEditor,
 
-
     insertText,
-
 
     replaceSelection,
 
-
     undo,
-
 
     redo,
 
-
     selectAll,
-
 
     copySelection,
 
-
     setReadOnly,
-
 
     isReadOnly,
 
-
     getEditorState,
-
 
     getEditorActions,
 
-
     getCurrentEditor,
-
 
     focusEditor,
 
-
     enableEditor,
-
 
     disableEditor,
 
-
     disposeEditors
-
 
 };

@@ -1,18 +1,16 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Application Core
  Version : 2.1 Refactored
 =================================================
 */
-
 
 // =========================================
 // Global App Object
 // =========================================
 
 const App = {
-
 
     state: {
 
@@ -26,7 +24,6 @@ const App = {
 
     },
 
-
     config: {
 
         fontSize: 14,
@@ -37,7 +34,6 @@ const App = {
 
     },
 
-
     editor: {
 
         left: null,
@@ -45,7 +41,6 @@ const App = {
         right: null
 
     },
-
 
     model: {
 
@@ -55,11 +50,7 @@ const App = {
 
     }
 
-
 };
-
-
-
 
 // =========================================
 // Application Start
@@ -77,28 +68,21 @@ document.addEventListener(
 
 );
 
-
-
-
 // =========================================
 // Start Application
 // =========================================
 
 function startApplication() {
 
-
     loadMonaco()
 
         .then(function () {
 
-
             initializeApp();
-
 
         })
 
         .catch(function (error) {
-
 
             console.error(
 
@@ -108,23 +92,15 @@ function startApplication() {
 
             );
 
-
             notifyError(
 
                 "Monaco editor failed to load."
 
             );
 
-
         });
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Load Monaco Offline
@@ -132,10 +108,7 @@ function startApplication() {
 
 function loadMonaco() {
 
-
     return new Promise(function (resolve, reject) {
-
-
 
         if (
 
@@ -148,8 +121,6 @@ function loadMonaco() {
             return;
 
         }
-
-
 
         if (
 
@@ -171,8 +142,6 @@ function loadMonaco() {
 
         }
 
-
-
         require.config({
 
             paths: {
@@ -185,8 +154,6 @@ function loadMonaco() {
 
         });
 
-
-
         require(
 
             [
@@ -195,37 +162,23 @@ function loadMonaco() {
 
             ],
 
-
             function () {
-
 
                 resolve();
 
-
             },
-
 
             function (error) {
 
-
                 reject(error);
-
 
             }
 
         );
 
-
     });
 
-
 }
-
-
-
-
-
-
 
 // =========================================
 // Initialize Application
@@ -233,53 +186,29 @@ function loadMonaco() {
 
 function initializeApp() {
 
-
     try {
-
 
         initializeConfig();
 
-
-
         createEditors();
-
-
 
         registerEditorEvents();
 
-
-
         initializeTheme();
-
-
 
         initializeToolbar();
 
-
-
         initializeShortcuts();
-
-
 
         initializeStatistics();
 
-
-
         initializeCompare();
-
-
 
         registerGlobalEvents();
 
-
-
         layoutEditors();
 
-
-
         App.state.ready = true;
-
-
 
         notifySuccess(
 
@@ -287,13 +216,9 @@ function initializeApp() {
 
         );
 
-
     }
 
-
     catch (error) {
-
-
 
         console.error(
 
@@ -303,31 +228,21 @@ function initializeApp() {
 
         );
 
-
-
         notifyError(
 
             error.message
 
         );
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Initialize Config
 // =========================================
 
 function initializeConfig() {
-
 
     const savedFontSize =
 
@@ -337,33 +252,21 @@ function initializeConfig() {
 
         );
 
-
-
     if (savedFontSize) {
-
 
         App.config.fontSize =
 
             Number(savedFontSize);
 
-
     }
 
-
-
 }
-
-
-
-
-
 
 // =========================================
 // Save Config
 // =========================================
 
 function saveConfig() {
-
 
     localStorage.setItem(
 
@@ -373,13 +276,7 @@ function saveConfig() {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Global Events
@@ -387,24 +284,17 @@ function saveConfig() {
 
 function registerGlobalEvents() {
 
-
-
     window.addEventListener(
 
         "resize",
 
         function () {
 
-
             layoutEditors();
-
 
         }
 
     );
-
-
-
 
     window.addEventListener(
 
@@ -412,21 +302,13 @@ function registerGlobalEvents() {
 
         function () {
 
-
             saveConfig();
-
 
         }
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Font Size
@@ -434,11 +316,7 @@ function registerGlobalEvents() {
 
 function changeFontSize(size) {
 
-
-
     size = Number(size);
-
-
 
     if (
 
@@ -450,25 +328,13 @@ function changeFontSize(size) {
 
     }
 
-
-
     App.config.fontSize = size;
-
-
 
     setFontSize(size);
 
-
-
     saveConfig();
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Language
@@ -476,10 +342,7 @@ function changeFontSize(size) {
 
 function changeLanguage(language) {
 
-
     App.state.language = language;
-
-
 
     setLanguage(
 
@@ -487,13 +350,7 @@ function changeLanguage(language) {
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Change Theme
@@ -501,20 +358,13 @@ function changeLanguage(language) {
 
 function changeTheme(theme) {
 
-
     setAppTheme(
 
         theme
 
     );
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Application Status
@@ -522,16 +372,9 @@ function changeTheme(theme) {
 
 function isAppReady() {
 
-
     return App.state.ready;
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Destroy Application
@@ -539,32 +382,19 @@ function isAppReady() {
 
 function destroyApp() {
 
-
     disposeEditors();
-
-
 
     App.editor.left = null;
 
     App.editor.right = null;
 
-
-
     App.model.left = null;
 
     App.model.right = null;
 
-
-
     App.state.ready = false;
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Debug Info
@@ -572,24 +402,19 @@ function destroyApp() {
 
 function getAppInfo() {
 
-
     return {
-
 
         ready:
 
             App.state.ready,
 
-
         language:
 
             App.state.language,
 
-
         theme:
 
             App.state.theme,
-
 
         editors:
 
@@ -599,30 +424,21 @@ function getAppInfo() {
 
                 !!App.editor.left,
 
-
             right:
 
                 !!App.editor.right
 
         }
 
-
     };
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Application API
 // =========================================
 
 const AppAPI = {
-
 
     initializeApp,
 

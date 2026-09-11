@@ -1,11 +1,10 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Compare Module
  Version : 2.0
 =================================================
 */
-
 
 // =========================================
 // Initialize Compare
@@ -21,9 +20,6 @@ function initializeCompare() {
 
 }
 
-
-
-
 // =========================================
 // Main Compare Function
 // =========================================
@@ -33,8 +29,6 @@ function compare() {
     const leftCode = getCode(LEFT);
 
     const rightCode = getCode(RIGHT);
-
-
 
     if (isBlank(leftCode)) {
 
@@ -48,8 +42,6 @@ function compare() {
 
     }
 
-
-
     if (isBlank(rightCode)) {
 
         notifyWarning(
@@ -62,15 +54,9 @@ function compare() {
 
     }
 
-
-
     const result = compareCodes();
 
-
-
     updateCompareStatistics();
-
-
 
     if (result) {
 
@@ -92,14 +78,9 @@ function compare() {
 
     }
 
-
-
     return result;
 
 }
-
-
-
 
 // =========================================
 // Compare Codes
@@ -107,28 +88,27 @@ function compare() {
 
 function compareCodes() {
 
-    const left = normalizeText(
+    const language = App.state.language;
 
-        getCode(LEFT)
+    const left = normalizeCode(
 
-    );
+        getCode(LEFT),
 
-
-
-    const right = normalizeText(
-
-        getCode(RIGHT)
+        language
 
     );
 
+    const right = normalizeCode(
 
+        getCode(RIGHT),
+
+        language
+
+    );
 
     return left === right;
 
 }
-
-
-
 
 // =========================================
 // Get Difference Percentage
@@ -136,21 +116,23 @@ function compareCodes() {
 
 function getSimilarity() {
 
-    const left = normalizeText(
+    const language = App.state.language;
 
-        getCode(LEFT)
+    const left = normalizeCode(
 
-    );
+        getCode(LEFT),
 
-
-
-    const right = normalizeText(
-
-        getCode(RIGHT)
+        language
 
     );
 
+    const right = normalizeCode(
 
+        getCode(RIGHT),
+
+        language
+
+    );
 
     if (
 
@@ -162,8 +144,6 @@ function getSimilarity() {
 
     }
 
-
-
     const maxLength = Math.max(
 
         left.length,
@@ -172,19 +152,13 @@ function getSimilarity() {
 
     );
 
-
-
     if (maxLength === 0) {
 
         return 100;
 
     }
 
-
-
     let sameCharacters = 0;
-
-
 
     for (
 
@@ -208,8 +182,6 @@ function getSimilarity() {
 
     }
 
-
-
     return Math.round(
 
         (
@@ -227,9 +199,6 @@ function getSimilarity() {
     );
 
 }
-
-
-
 
 // =========================================
 // Compare Report
@@ -253,34 +222,33 @@ function getCompareReport() {
 
 }
 
-
-
-
 // =========================================
 // Difference Count
 // =========================================
 
 function getDifferenceCount() {
 
-    const leftLines = normalizeText(
+    const language = App.state.language;
 
-        getCode(LEFT)
+    const leftLines = normalizeCode(
 
-    )
+        getCode(LEFT),
 
-        .split("\n");
-
-
-
-    const rightLines = normalizeText(
-
-        getCode(RIGHT)
+        language
 
     )
 
         .split("\n");
 
+    const rightLines = normalizeCode(
 
+        getCode(RIGHT),
+
+        language
+
+    )
+
+        .split("\n");
 
     const maxLines = Math.max(
 
@@ -290,11 +258,7 @@ function getDifferenceCount() {
 
     );
 
-
-
     let differences = 0;
-
-
 
     for (
 
@@ -318,14 +282,9 @@ function getDifferenceCount() {
 
     }
 
-
-
     return differences;
 
 }
-
-
-
 
 // =========================================
 // Update Compare Statistics
@@ -348,9 +307,6 @@ function updateCompareStatistics() {
     }
 
 }
-
-
-
 
 // =========================================
 // Show Diff
@@ -378,14 +334,9 @@ function showDiff() {
 
     }
 
-
-
     showDiffEditor();
 
 }
-
-
-
 
 // =========================================
 // Hide Diff
@@ -397,9 +348,6 @@ function hideDiff() {
 
 }
 
-
-
-
 // =========================================
 // Toggle Diff
 // =========================================
@@ -409,9 +357,6 @@ function toggleDiffMode() {
     toggleDiffEditor();
 
 }
-
-
-
 
 // =========================================
 // Debug Report

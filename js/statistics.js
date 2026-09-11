@@ -1,11 +1,10 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Statistics Module
  Version : 2.1 Refactored
 =================================================
 */
-
 
 // =========================================
 // Initialize Statistics
@@ -13,15 +12,9 @@
 
 function initializeStatistics() {
 
-
     updateStatistics();
 
-
 }
-
-
-
-
 
 // =========================================
 // Update All Statistics
@@ -29,13 +22,11 @@ function initializeStatistics() {
 
 function updateStatistics() {
 
-
     updateEditorStatistics(
 
         LEFT
 
     );
-
 
     updateEditorStatistics(
 
@@ -43,12 +34,7 @@ function updateStatistics() {
 
     );
 
-
 }
-
-
-
-
 
 // =========================================
 // Update Editor Statistics
@@ -56,34 +42,23 @@ function updateStatistics() {
 
 function updateEditorStatistics(side) {
 
-
     const code = getCode(side);
 
-
-
     const data = {
-
 
         lines:
 
             getLineCount(side),
 
-
-
         words:
 
             getWordCount(side),
-
-
 
         characters:
 
             getCharacterCount(side)
 
-
     };
-
-
 
     updateStatusBar(
 
@@ -93,16 +68,11 @@ function updateEditorStatistics(side) {
 
 }
 
-
-
-
-
 // =========================================
 // Update Status Bar
 // =========================================
 
 function updateStatusBar(data) {
-
 
     const lineElement =
 
@@ -112,8 +82,6 @@ function updateStatusBar(data) {
 
         );
 
-
-
     const wordElement =
 
         document.getElementById(
@@ -121,8 +89,6 @@ function updateStatusBar(data) {
             "wordCount"
 
         );
-
-
 
     const charElement =
 
@@ -132,58 +98,37 @@ function updateStatusBar(data) {
 
         );
 
-
-
-
     if (lineElement) {
-
 
         lineElement.innerText =
 
             "Lines:" + data.lines;
 
-
     }
 
-
-
-
     if (wordElement) {
-
 
         wordElement.innerText =
 
             "Words:" + data.words;
 
-
     }
 
-
-
-
     if (charElement) {
-
 
         charElement.innerText =
 
             "Characters:" + data.characters;
 
-
     }
 
-
 }
-
-
-
-
 
 // =========================================
 // Update Cursor Position
 // =========================================
 
 function updateCursorPosition(side) {
-
 
     const editor =
 
@@ -193,33 +138,21 @@ function updateCursorPosition(side) {
 
             : App.editor.right;
 
-
-
-
     if (!editor) {
 
         return;
 
     }
 
-
-
-
     const position =
 
         editor.getPosition();
-
-
-
 
     if (!position) {
 
         return;
 
     }
-
-
-
 
     const cursor =
 
@@ -229,11 +162,7 @@ function updateCursorPosition(side) {
 
         );
 
-
-
-
     if (cursor) {
-
 
         cursor.innerText =
 
@@ -245,23 +174,15 @@ function updateCursorPosition(side) {
 
             position.column;
 
-
     }
 
-
 }
-
-
-
-
-
 
 // =========================================
 // Compare Statistics
 // =========================================
 
 function updateCompareStatistics() {
-
 
     if (
 
@@ -273,13 +194,9 @@ function updateCompareStatistics() {
 
     }
 
-
-
     const report =
 
         getCompareReport();
-
-
 
     const status =
 
@@ -289,49 +206,33 @@ function updateCompareStatistics() {
 
         );
 
-
-
     if (status) {
 
-
-
         if (report.match) {
-
 
             status.innerText =
 
                 "Codes are identical";
 
-
         }
 
         else {
-
 
             status.innerText =
 
                 "Codes are different";
 
-
         }
-
 
     }
 
-
 }
-
-
-
-
 
 // =========================================
 // Reset Statistics
 // =========================================
 
 function resetStatistics() {
-
-
 
     const lineElement =
 
@@ -341,8 +242,6 @@ function resetStatistics() {
 
         );
 
-
-
     const wordElement =
 
         document.getElementById(
@@ -350,8 +249,6 @@ function resetStatistics() {
             "wordCount"
 
         );
-
-
 
     const charElement =
 
@@ -361,8 +258,6 @@ function resetStatistics() {
 
         );
 
-
-
     if (lineElement) {
 
         lineElement.innerText =
@@ -370,8 +265,6 @@ function resetStatistics() {
             "Lines:1";
 
     }
-
-
 
     if (wordElement) {
 
@@ -381,8 +274,6 @@ function resetStatistics() {
 
     }
 
-
-
     if (charElement) {
 
         charElement.innerText =
@@ -391,13 +282,7 @@ function resetStatistics() {
 
     }
 
-
-
 }
-
-
-
-
 
 // =========================================
 // Get Statistics Data
@@ -405,55 +290,41 @@ function resetStatistics() {
 
 function getStatisticsData() {
 
-
     return {
 
-
         left: {
-
 
             lines:
 
                 getLineCount(LEFT),
 
-
             words:
 
                 getWordCount(LEFT),
-
 
             characters:
 
                 getCharacterCount(LEFT)
 
-
         },
 
-
-
         right: {
-
 
             lines:
 
                 getLineCount(RIGHT),
 
-
             words:
 
                 getWordCount(RIGHT),
-
 
             characters:
 
                 getCharacterCount(RIGHT)
 
-
         },
 
-
         compare:
-
 
             typeof getCompareReport === "function"
 
@@ -465,15 +336,9 @@ function getStatisticsData() {
 
                 null
 
-
     };
 
-
 }
-
-
-
-
 
 // =========================================
 // Statistics API
@@ -481,23 +346,16 @@ function getStatisticsData() {
 
 const StatisticsAPI = {
 
-
     updateStatistics,
-
 
     updateEditorStatistics,
 
-
     updateCursorPosition,
-
 
     updateCompareStatistics,
 
-
     resetStatistics,
 
-
     getStatisticsData
-
 
 };

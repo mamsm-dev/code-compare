@@ -2,406 +2,183 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="image/icon.png">
-
-    <meta name="description" content="Compare and analyze source code quickly and accurately.">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://codecomparestudio.github.io/">
-    <meta property="og:title" content="Code Compare Studio">
-    <meta property="og:description" content="Compare and analyze source code quickly and accurately.">
-    <meta property="og:image" content="https://codecomparestudio.github.io/preview.png">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Code Compare Studio">
-    <meta name="twitter:description" content="Compare and analyze source code quickly and accurately.">
-    <meta name="twitter:image" content="https://codecomparestudio.github.io/preview.png">
-
-    <title>Code Compare Studio</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="image/icon.png">
+  <meta name="description" content="Compare and analyze source code quickly and accurately.">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mamsm-dev.github.io/code-cmpare/">
+  <meta property="og:title" content="Code Compare">
+  <meta property="og:description" content="Compare and analyze source code quickly and accurately.">
+  <meta property="og:image" content="https://mamsm-dev.github.io/code-cmpare/preview.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Code Compare">
+  <meta name="twitter:description" content="Compare and analyze source code quickly and accurately.">
+  <meta name="twitter:image" content="https://mamsm-dev.github.io/code-cmpare/preview.png">
+  <title>Code Compare Studio</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-
 <body>
-
-
-    <div class="container">
-
-
-        <!-- ===========================
+  <div class="container">
+    <!-- ===========================
             HEADER
     ============================ -->
-
-        <header>
-
-            <h1>
-                Code Compare Studio
-            </h1>
-
-
-            <div class="toolbar">
-
-
-                <div class="toolbarLeft">
-
-
-                    <label for="language">
-                        Language
-                    </label>
-
-
-                    <select id="language">
-
-
-                        <option value="javascript">
-                            JavaScript
-                        </option>
-
-
-                        <option value="html">
-                            HTML
-                        </option>
-
-
-                        <option value="css">
-                            CSS
-                        </option>
-
-
-                        <option value="json">
-                            JSON
-                        </option>
-
-
-                        <option value="php">
-                            PHP
-                        </option>
-
-
-                        <option value="python">
-                            Python
-                        </option>
-
-
-                        <option value="cpp">
-                            C++
-                        </option>
-
-
-                    </select>
-
-
-
-                    <label for="theme">
-                        Theme
-                    </label>
-
-
-                    <select id="theme">
-
-
-                        <option value="vs-dark">
-                            Dark
-                        </option>
-
-
-                        <option value="vs">
-                            Light
-                        </option>
-
-
-                    </select>
-
-
-                </div>
-
-
-
-
-
-                <div class="toolbarRight">
-
-
-                    <button id="compareBtn">
-
-                        Compare
-
-                    </button>
-
-
-
-                    <button id="diffBtn">
-
-                        Show Diff
-
-                    </button>
-
-
-
-                    <button id="copyBtn">
-
-                        Copy
-
-                    </button>
-
-
-
-                    <button id="downloadBtn">
-
-                        Download
-
-                    </button>
-
-
-
-                    <button id="resetBtn">
-
-                        Reset
-
-                    </button>
-
-
-                </div>
-
-
-            </div>
-
-
-        </header>
-
-
-
-
-
-
-        <!-- ===========================
+    <header>
+      <h1>
+        Code Compare
+      </h1>
+
+      <div class="toolbar">
+        <div class="toolbarLeft">
+          <label for="language">
+            Language
+          </label>
+          <select id="language">
+            <option value="javascript">
+              JavaScript
+            </option>
+            <option value="html">
+              HTML
+            </option>
+            <option value="css">
+              CSS
+            </option>
+            <option value="json">
+              JSON
+            </option>
+            <option value="php">
+              PHP
+            </option>
+            <option value="python">
+              Python
+            </option>
+            <option value="cpp">
+              C++
+            </option>
+          </select>
+          <label for="theme">
+            Theme
+          </label>
+          <select id="theme">
+            <option value="vs-dark">
+              Dark
+            </option>
+            <option value="vs">
+              Light
+            </option>
+          </select>
+        </div>
+
+        <div class="toolbarRight">
+          <button id="compareBtn">
+            Compare
+          </button>
+          <button id="diffBtn">
+            Show Diff
+          </button>
+          <button id="copyBtn">
+            Copy
+          </button>
+          <button id="downloadBtn">
+            Download
+          </button>
+          <button id="resetBtn">
+            Reset
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===========================
             EDITOR AREA
     ============================ -->
+    <main>
+      <section id="editorContainer" class="editorPanel">
+        <div class="editorBox">
+          <div class="editorHeader">
+            Your Code
+          </div>
+          <div id="editor1"></div>
+        </div>
 
+        <div class="editorBox">
+          <div class="editorHeader">
+            Reference Code
+          </div>
+          <div id="editor2"></div>
+        </div>
+      </section>
 
-        <main>
-
-
-            <section id="editorContainer" class="editorPanel">
-
-
-
-                <div class="editorBox">
-
-
-                    <div class="editorHeader">
-
-                        Your Code
-
-                    </div>
-
-
-                    <div id="editor1"></div>
-
-
-                </div>
-
-
-
-
-
-                <div class="editorBox">
-
-
-                    <div class="editorHeader">
-
-                        Reference Code
-
-                    </div>
-
-
-                    <div id="editor2"></div>
-
-
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-            <!-- ===========================
+      <!-- ===========================
                 DIFF EDITOR AREA
         ============================ -->
+      <section id="diffContainer" class="hidden">
+      </section>
+    </main>
 
-
-            <section id="diffContainer" class="hidden">
-
-
-            </section>
-
-
-
-        </main>
-
-
-
-
-
-
-        <!-- ===========================
+    <!-- ===========================
             STATUS BAR
     ============================ -->
-
-
-        <footer class="statusBar">
-
-
-
-            <div class="statusLeft">
-
-
-                <span id="statusText">
-
-                    Ready
-
-                </span>
-
-
-            </div>
-
-
-
-
-
-            <div class="statusCenter">
-
-
-                <span id="languageStatus">
-
-                    JavaScript
-
-                </span>
-
-
-            </div>
-
-
-
-
-
-            <div class="statusRight">
-
-
-
-                <span id="cursorPosition">
-
-                    Ln 1, Col 1
-
-                </span>
-
-
-
-
-                <span id="tabSize">
-
-                    Spaces:4
-
-                </span>
-
-
-
-
-                <span id="encoding">
-
-                    UTF-8
-
-                </span>
-
-
-
-
-                <span id="lineCount">
-
-                    Lines:1
-
-                </span>
-
-
-
-
-                <span id="wordCount">
-
-                    Words:0
-
-                </span>
-
-
-
-
-                <span id="charCount">
-
-                    Characters:0
-
-                </span>
-
-
-
-            </div>
-
-
-
-        </footer>
-
-
-
-    </div>
-
-    <div id="notificationContainer"></div>
-
-
-
-
-    <!-- ===========================
+    <footer class="statusBar">
+      <div class="statusLeft">
+        <span id="statusText">
+          Ready
+        </span>
+      </div>
+
+      <div class="statusCenter">
+        <span id="languageStatus">
+          JavaScript
+        </span>
+      </div>
+
+      <div class="statusRight">
+        <span id="cursorPosition">
+          Ln 1, Col 1
+        </span>
+
+        <span id="tabSize">
+          Spaces:4
+        </span>
+
+        <span id="encoding">
+          UTF-8
+        </span>
+
+        <span id="lineCount">
+          Lines:1
+        </span>
+
+        <span id="wordCount">
+          Words:0
+        </span>
+
+        <span id="charCount">
+          Characters:0
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="notificationContainer"></div>
+  <!-- ===========================
         MONACO
 =========================== -->
-
-
-    <script src="monaco/min/vs/loader.js"></script>
-
-
-
-
-
-    <!-- ===========================
+  <script src="monaco/min/vs/loader.js"></script>
+  <!-- ===========================
         PROJECT MODULES
 =========================== -->
-
-
-    <script src="js/utils.js"></script>
-
-    <script src="js/editor.js"></script>
-
-    <script src="js/statistics.js"></script>
-
-    <script src="js/theme.js"></script>
-
-    <script src="js/toolbar.js"></script>
-
-    <script src="js/compare.js"></script>
-
-    <script src="js/app.js"></script>
-
-
-
+  <script src="js/utils.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/toolbar.js"></script>
+  <script src="js/normalizer.js"></script>
+  <script src="js/compare.js"></script>
+  <script src="js/app.js"></script>
 </body>
-
 
 </html>

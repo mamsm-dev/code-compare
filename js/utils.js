@@ -1,11 +1,10 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Utilities Module
  Version : 1.0
 =================================================
 */
-
 
 // =========================================
 // Notification Types
@@ -22,9 +21,6 @@ const NOTIFICATION = {
     INFO: "info"
 
 };
-
-
-
 
 // =========================================
 // Show Notification
@@ -46,8 +42,6 @@ function showNotification(
 
     );
 
-
-
     if (!container) {
 
         console.warn(
@@ -60,21 +54,15 @@ function showNotification(
 
     }
 
-
-
     const notification = document.createElement(
 
         "div"
 
     );
 
-
-
     notification.className =
 
         "notification " + type;
-
-
 
     notification.innerHTML =
 
@@ -100,15 +88,11 @@ function showNotification(
 
         "</span>";
 
-
-
     container.appendChild(
 
         notification
 
     );
-
-
 
     requestAnimationFrame(function () {
 
@@ -119,8 +103,6 @@ function showNotification(
         );
 
     });
-
-
 
     setTimeout(function () {
 
@@ -134,15 +116,12 @@ function showNotification(
 
 }
 
-
-
 function updateCompareStatus(message) {
 
     const status =
         document.getElementById(
             "statusText"
         );
-
 
     if (status) {
 
@@ -151,9 +130,6 @@ function updateCompareStatus(message) {
     }
 
 }
-
-
-
 
 // =========================================
 // Hide Notification
@@ -167,23 +143,17 @@ function hideNotification(notification) {
 
     }
 
-
-
     notification.classList.remove(
 
         "show"
 
     );
 
-
-
     notification.classList.add(
 
         "hide"
 
     );
-
-
 
     setTimeout(function () {
 
@@ -201,9 +171,6 @@ function hideNotification(notification) {
 
 }
 
-
-
-
 // =========================================
 // Clear Notifications
 // =========================================
@@ -216,22 +183,15 @@ function clearNotifications() {
 
     );
 
-
-
     if (!container) {
 
         return;
 
     }
 
-
-
     container.innerHTML = "";
 
 }
-
-
-
 
 // =========================================
 // Notification Icon
@@ -245,19 +205,13 @@ function getNotificationIcon(type) {
 
             return "✅";
 
-
-
         case NOTIFICATION.ERROR:
 
             return "❌";
 
-
-
         case NOTIFICATION.WARNING:
 
             return "⚠️";
-
-
 
         default:
 
@@ -266,9 +220,6 @@ function getNotificationIcon(type) {
     }
 
 }
-
-
-
 
 // =========================================
 // Confirm Dialog
@@ -280,13 +231,9 @@ function showConfirm(message, onConfirm, onCancel = null) {
 
     overlay.className = "confirm-overlay";
 
-
-
     const box = document.createElement("div");
 
     box.className = "confirm-box";
-
-
 
     box.innerHTML = `
 
@@ -316,15 +263,9 @@ function showConfirm(message, onConfirm, onCancel = null) {
 
     `;
 
-
-
     overlay.appendChild(box);
 
-
-
     document.body.appendChild(overlay);
-
-
 
     const confirmButton = box.querySelector(
 
@@ -332,16 +273,11 @@ function showConfirm(message, onConfirm, onCancel = null) {
 
     );
 
-
-
     const cancelButton = box.querySelector(
 
         ".confirm-cancel"
 
     );
-
-
-
 
     function close() {
 
@@ -350,7 +286,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
             "hide"
 
         );
-
 
         setTimeout(function () {
 
@@ -368,9 +303,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
 
     }
 
-
-
-
     confirmButton.addEventListener(
 
         "click",
@@ -378,7 +310,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
         function () {
 
             close();
-
 
             if (typeof onConfirm === "function") {
 
@@ -390,9 +321,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
 
     );
 
-
-
-
     cancelButton.addEventListener(
 
         "click",
@@ -400,7 +328,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
         function () {
 
             close();
-
 
             if (typeof onCancel === "function") {
 
@@ -411,8 +338,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
         }
 
     );
-
-
 
     requestAnimationFrame(function () {
 
@@ -425,8 +350,6 @@ function showConfirm(message, onConfirm, onCancel = null) {
     });
 
 }
-
-
 
 // =========================================
 // Success Message
@@ -444,9 +367,6 @@ function notifySuccess(message) {
 
 }
 
-
-
-
 // =========================================
 // Error Message
 // =========================================
@@ -462,9 +382,6 @@ function notifyError(message) {
     );
 
 }
-
-
-
 
 // =========================================
 // Warning Message
@@ -482,9 +399,6 @@ function notifyWarning(message) {
 
 }
 
-
-
-
 // =========================================
 // Info Message
 // =========================================
@@ -500,7 +414,6 @@ function notifyInfo(message) {
     );
 
 }
-
 
 // =========================================
 // Copy Text
@@ -530,9 +443,6 @@ async function copyText(text) {
 
 }
 
-
-
-
 // =========================================
 // Download Text File
 // =========================================
@@ -551,40 +461,23 @@ function downloadText(fileName, content) {
 
     );
 
-
-
     const url = URL.createObjectURL(blob);
 
-
-
     const link = document.createElement("a");
-
-
 
     link.href = url;
 
     link.download = fileName;
 
-
-
     document.body.appendChild(link);
-
-
 
     link.click();
 
-
-
     document.body.removeChild(link);
-
-
 
     URL.revokeObjectURL(url);
 
 }
-
-
-
 
 // =========================================
 // Download Code
@@ -600,8 +493,6 @@ function downloadCode(fileName, code) {
 
     );
 
-
-
     notifySuccess(
 
         "File downloaded."
@@ -609,9 +500,6 @@ function downloadCode(fileName, code) {
     );
 
 }
-
-
-
 
 // =========================================
 // Normalize Text
@@ -629,9 +517,6 @@ function normalizeText(text) {
 
 }
 
-
-
-
 // =========================================
 // Normalize Code
 // =========================================
@@ -641,9 +526,6 @@ function normalizeCode(text) {
     return normalizeText(text);
 
 }
-
-
-
 
 // =========================================
 // File Extension
@@ -657,73 +539,49 @@ function getFileExtension(language) {
 
             return "js";
 
-
-
         case "typescript":
 
             return "ts";
-
-
 
         case "html":
 
             return "html";
 
-
-
         case "css":
 
             return "css";
-
-
 
         case "json":
 
             return "json";
 
-
-
         case "xml":
 
             return "xml";
-
-
 
         case "php":
 
             return "php";
 
-
-
         case "python":
 
             return "py";
-
-
 
         case "cpp":
 
             return "cpp";
 
-
-
         case "c":
 
             return "c";
-
-
 
         case "java":
 
             return "java";
 
-
-
         case "sql":
 
             return "sql";
-
-
 
         default:
 
@@ -732,9 +590,6 @@ function getFileExtension(language) {
     }
 
 }
-
-
-
 
 // =========================================
 // Build File Name
@@ -764,9 +619,6 @@ function buildFileName(
 
 }
 
-
-
-
 // =========================================
 // Format File Size
 // =========================================
@@ -778,8 +630,6 @@ function formatFileSize(bytes) {
         return bytes + " B";
 
     }
-
-
 
     if (bytes < 1024 * 1024) {
 
@@ -795,8 +645,6 @@ function formatFileSize(bytes) {
 
     }
 
-
-
     return (
 
         bytes /
@@ -810,9 +658,6 @@ function formatFileSize(bytes) {
         " MB";
 
 }
-
-
-
 
 // =========================================
 // Get Text Size
@@ -828,9 +673,6 @@ function getTextSize(text) {
 
 }
 
-
-
-
 // =========================================
 // Get Formatted Text Size
 // =========================================
@@ -844,7 +686,6 @@ function getFormattedTextSize(text) {
     );
 
 }
-
 
 // =========================================
 // Debounce
@@ -867,9 +708,6 @@ function debounce(callback, delay = 300) {
     };
 
 }
-
-
-
 
 // =========================================
 // Throttle
@@ -901,9 +739,6 @@ function throttle(callback, delay = 300) {
 
 }
 
-
-
-
 // =========================================
 // Sleep
 // =========================================
@@ -917,9 +752,6 @@ function sleep(milliseconds) {
     });
 
 }
-
-
-
 
 // =========================================
 // Generate UUID
@@ -944,9 +776,6 @@ function generateUUID() {
         });
 
 }
-
-
-
 
 // =========================================
 // Random ID
@@ -974,9 +803,6 @@ function randomId(prefix = "id") {
 
 }
 
-
-
-
 // =========================================
 // Current Timestamp
 // =========================================
@@ -986,9 +812,6 @@ function getTimestamp() {
     return Date.now();
 
 }
-
-
-
 
 // =========================================
 // Current Time
@@ -1002,9 +825,6 @@ function getCurrentTime() {
 
 }
 
-
-
-
 // =========================================
 // Current Date
 // =========================================
@@ -1016,9 +836,6 @@ function getCurrentDate() {
         .toLocaleDateString();
 
 }
-
-
-
 
 // =========================================
 // Format Date Time
@@ -1042,9 +859,6 @@ function formatDateTime(date = new Date()) {
 
 }
 
-
-
-
 // =========================================
 // Is Empty
 // =========================================
@@ -1063,9 +877,6 @@ function isEmpty(value) {
 
 }
 
-
-
-
 // =========================================
 // Is Blank
 // =========================================
@@ -1075,9 +886,6 @@ function isBlank(text) {
     return text.trim() === "";
 
 }
-
-
-
 
 // =========================================
 // Clamp Number
@@ -1095,9 +903,6 @@ function clamp(value, min, max) {
 
 }
 
-
-
-
 // =========================================
 // Round Number
 // =========================================
@@ -1111,9 +916,6 @@ function round(value, digits = 2) {
     );
 
 }
-
-
-
 
 // =========================================
 // Random Integer
@@ -1130,9 +932,6 @@ function randomInt(min, max) {
     ) + min;
 
 }
-
-
-
 
 // =========================================
 // Capitalize
@@ -1160,7 +959,6 @@ function capitalize(text) {
 
 }
 
-
 // =========================================
 // Escape HTML
 // =========================================
@@ -1181,9 +979,6 @@ function escapeHtml(text) {
 
 }
 
-
-
-
 // =========================================
 // Unescape HTML
 // =========================================
@@ -1198,9 +993,6 @@ function unescapeHtml(text) {
 
 }
 
-
-
-
 // =========================================
 // Remove Extra Spaces
 // =========================================
@@ -1214,9 +1006,6 @@ function removeExtraSpaces(text) {
         .trim();
 
 }
-
-
-
 
 // =========================================
 // Remove Empty Lines
@@ -1238,9 +1027,6 @@ function removeEmptyLines(text) {
 
 }
 
-
-
-
 // =========================================
 // Normalize Line Endings
 // =========================================
@@ -1255,9 +1041,6 @@ function normalizeLineEndings(text) {
 
 }
 
-
-
-
 // =========================================
 // Compare Text
 // =========================================
@@ -1267,9 +1050,6 @@ function compareText(text1, text2) {
     return normalizeText(text1) === normalizeText(text2);
 
 }
-
-
-
 
 // =========================================
 // Deep Clone
@@ -1284,9 +1064,6 @@ function deepClone(object) {
     );
 
 }
-
-
-
 
 // =========================================
 // Merge Objects
@@ -1305,9 +1082,6 @@ function mergeObjects(target, source) {
     );
 
 }
-
-
-
 
 // =========================================
 // Safe JSON Parse
@@ -1328,9 +1102,6 @@ function safeJsonParse(text) {
     }
 
 }
-
-
-
 
 // =========================================
 // Safe JSON Stringify
@@ -1360,9 +1131,6 @@ function safeJsonStringify(object) {
 
 }
 
-
-
-
 // =========================================
 // Logger
 // =========================================
@@ -1378,9 +1146,6 @@ function log() {
     );
 
 }
-
-
-
 
 // =========================================
 // Warning Logger
@@ -1398,9 +1163,6 @@ function warn() {
 
 }
 
-
-
-
 // =========================================
 // Error Logger
 // =========================================
@@ -1417,9 +1179,6 @@ function error() {
 
 }
 
-
-
-
 // =========================================
 // Version
 // =========================================
@@ -1429,9 +1188,6 @@ function getVersion() {
     return "1.0.0";
 
 }
-
-
-
 
 // =========================================
 // About

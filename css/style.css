@@ -1,1959 +1,734 @@
 /*
 =================================================
- Code Compare Studio
+ Code Compare
  Main Style Sheet
  Version : 2.1 (Fixed)
 =================================================
 */
-
 
 /* =========================================
    CSS VARIABLES
 ========================================= */
 
 :root {
-
-
-    --bg-color: #f5f7fb;
-
-    --surface-color: #ffffff;
-
-    --text-color: #1f2937;
-
-    --border-color: #d1d5db;
-
-
-    --primary-color: #2563eb;
-
-    --primary-hover: #1d4ed8;
-
-
-    --danger-color: #dc2626;
-
-    --success-color: #16a34a;
-
-    --warning-color: #d97706;
-
-
-    --header-height: 90px;
-
-    --toolbar-height: 60px;
-
-
-    --radius: 10px;
-
-
-    --transition: .25s ease;
-
-
-    --shadow:
-
-        0 5px 20px rgba(0, 0, 0, .12);
-
-
+  --bg-color: #f5f7fb;
+  --surface-color: #ffffff;
+  --text-color: #1f2937;
+  --border-color: #d1d5db;
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger-color: #dc2626;
+  --success-color: #16a34a;
+  --warning-color: #d97706;
+  --header-height: 90px;
+  --toolbar-height: 60px;
+  --radius: 10px;
+  --transition: .25s ease;
+  --shadow: 0 5px 20px rgba(0, 0, 0, .12);
 }
-
-
-
-
 
 /* =========================================
    DARK THEME
 ========================================= */
 
-
 body.dark {
-
-
-    --bg-color: #111827;
-
-
-    --surface-color: #1f2937;
-
-
-    --text-color: #f9fafb;
-
-
-    --border-color: #374151;
-
-
-    --primary-color: #3b82f6;
-
-
-    --primary-hover: #60a5fa;
-
-
+  --bg-color: #000207;
+  --surface-color: #030712;
+  --text-color: #f9fafb;
+  --border-color: #374151;
+  --primary-color: #2563EB;
+  --primary-hover: #356ee9;
 }
-
-
-
-
-
 
 /* =========================================
    LIGHT THEME
 ========================================= */
 
-
 body.light {
-
-
-    --bg-color: #f8fafc;
-
-
-    --surface-color: #ffffff;
-
-
-    --text-color: #111827;
-
-
-    --border-color: #e5e7eb;
-
-
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-color: #111827;
+  --border-color: #e5e7eb;
 }
-
-
-
-
-
 
 /* =========================================
    GLOBAL RESET
 ========================================= */
 
-
 * {
-
-
-    margin: 0;
-
-    padding: 0;
-
-
-    box-sizing: border-box;
-
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-
-
-
 
 html,
 body {
-
-
-    width: 100%;
-
-
-    height: 100%;
-
-
-    overflow: hidden;
-
-
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-
-
-
-
 
 body {
-
-
-    background: var(--bg-color);
-
-
-    color: var(--text-color);
-
-
-    font-family:
-
-
-        "Segoe UI",
-
-
-        Tahoma,
-
-
-        Arial,
-
-
-        sans-serif;
-
-
-
-    transition:
-
-
-        background var(--transition),
-
-
-        color var(--transition);
-
-
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  transition:
+    background var(--transition),
+    color var(--transition);
 }
-
-
-
-
 
 button,
 select {
-
-
-    font-family: inherit;
-
-
+  font-family: inherit;
 }
-
-
-
-
 
 button {
-
-
-    cursor: pointer;
-
-
+  cursor: pointer;
 }
-
-
-
-
-
 
 /* =========================================
    MAIN CONTAINER
 ========================================= */
 
-
 .container {
-
-
-    width: 100%;
-
-
-    height: 100vh;
-
-
-    display: flex;
-
-
-    flex-direction: column;
-
-
-    background: var(--bg-color);
-
-
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-color);
 }
-
-
-
-
-
 
 /* =========================================
    HEADER
 ========================================= */
 
-
 header {
-
-
-    width: 100%;
-
-
-    background: var(--surface-color);
-
-
-    border-bottom:
-
-
-        1px solid var(--border-color);
-
-
-    box-shadow: var(--shadow);
-
-
+  width: 100%;
+  background: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
 }
-
-
-
-
-
 
 /* =========================================
    TITLE
 ========================================= */
 
-
 header h1 {
-
-
-    height: 90px;
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    padding-left: 30px;
-
-
-
-    font-size: 32px;
-
-
-    font-weight: 700;
-
-
-
-    color: var(--text-color);
-
-
-
-    letter-spacing: .5px;
-
-
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: .5px;
 }
 
 /* =========================================
    TOOLBAR
 ========================================= */
 
-
 .toolbar {
-
-
-    width: 100%;
-
-
-    min-height: 60px;
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    justify-content: space-between;
-
-
-    gap: 20px;
-
-
-    padding: 10px 20px;
-
-
-    background: var(--surface-color);
-
-
-    border-bottom:
-
-
-        1px solid var(--border-color);
-
-
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  background: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
 }
-
-
-
-
-
 
 /* =========================================
    TOOLBAR LEFT
 ========================================= */
 
-
 .toolbarLeft {
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    gap: 10px;
-
-
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-
-
-
-
-
 
 .toolbarLeft label {
-
-
-    font-size: 15px;
-
-
-    color: var(--text-color);
-
-
-    font-weight: 500;
-
-
+  font-size: 15px;
+  color: var(--text-color);
+  font-weight: 500;
 }
-
-
-
-
-
 
 /* =========================================
    SELECT BOX
 ========================================= */
 
-
 .toolbar select {
-
-
-    height: 38px;
-
-
-    padding: 0 12px;
-
-
-    border-radius: var(--radius);
-
-
-    border:
-
-
-        1px solid var(--border-color);
-
-
-
-    background: var(--bg-color);
-
-
-    color: var(--text-color);
-
-
-    outline: none;
-
-
-    transition: var(--transition);
-
-
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  outline: none;
+  transition: var(--transition);
 }
-
-
-
-
 
 .toolbar select:hover {
-
-
-    border-color: var(--primary-color);
-
-
+  border-color: var(--primary-color);
 }
-
-
-
-
 
 .toolbar select:focus {
-
-
-    border-color: var(--primary-color);
-
-
-    box-shadow:
-
-
-        0 0 0 3px rgba(37, 99, 235, .15);
-
-
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
 }
-
-
-
-
-
 
 /* =========================================
    TOOLBAR RIGHT
 ========================================= */
 
-
 .toolbarRight {
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    gap: 8px;
-
-
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-
-
-
-
-
 
 /* =========================================
    BUTTONS
 ========================================= */
 
-
 .toolbar button {
-
-
-    height: 38px;
-
-
-    padding: 0 18px;
-
-
-    border: none;
-
-
-    border-radius: var(--radius);
-
-
-    background: var(--primary-color);
-
-
-    color: white;
-
-
-    font-size: 14px;
-
-
-    font-weight: 500;
-
-
-    transition: var(--transition);
-
-
+  height: 38px;
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary-color);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
 }
-
-
-
-
-
 
 .toolbar button:hover {
-
-
-    background: var(--primary-hover);
-
-
-    transform: translateY(-1px);
-
-
+  background: var(--primary-hover);
+  transform: translateY(-1px);
 }
-
-
-
-
-
 
 .toolbar button:active {
-
-
-    transform: scale(.97);
-
-
+  transform: scale(.97);
 }
-
-
-
-
-
 
 .toolbar button:disabled {
-
-
-    opacity: .5;
-
-
-    cursor: not-allowed;
-
-
-    transform: none;
-
-
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
 }
-
-
-
-
-
 
 /* =========================================
    MAIN AREA
 ========================================= */
 
-
 main {
-
-
-    flex: 1;
-
-
-    width: 100%;
-
-
-    min-height: 0;
-
-
-    display: flex;
-
-
-    flex-direction: column;
-
-
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
-
-
-
-
-
 
 /* =========================================
    EDITOR PANEL
 ========================================= */
 
-
 .editorPanel {
-
-
-    flex: 1;
-
-
-    min-height: 0;
-
-
-    width: 100%;
-
-
-    display: flex;
-
-
-    gap: 12px;
-
-
-    padding: 12px;
-
-
-    background: var(--bg-color);
-
-
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-color);
 }
-
-
-
-
-
 
 /* =========================================
    EDITOR BOX
 ========================================= */
 
-
 .editorBox {
-
-
-    flex: 1;
-
-
-    min-width: 0;
-
-
-    display: flex;
-
-
-    flex-direction: column;
-
-
-    background: var(--surface-color);
-
-
-    border:
-
-
-        1px solid var(--border-color);
-
-
-
-    border-radius: var(--radius);
-
-
-    overflow: hidden;
-
-
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
-
-
-
-
-
 
 /* =========================================
    EDITOR HEADER
 ========================================= */
 
-
 .editorHeader {
-
-
-    height: 42px;
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    padding: 0 15px;
-
-
-    background:
-
-
-        rgba(128, 128, 128, .08);
-
-
-
-    border-bottom:
-
-
-        1px solid var(--border-color);
-
-
-    font-weight: 600;
-
-
-    color: var(--text-color);
-
-
+  height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background: rgba(128, 128, 128, .08);
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-color);
 }
-
-
-
-
-
 
 /* =========================================
    MONACO EDITORS
 ========================================= */
 
-
 #editor1,
 #editor2 {
-
-
-    flex: 1;
-
-
-    width: 100%;
-
-
-    min-height: 0;
-
-
+  flex: 1;
+  width: 100%;
+  min-height: 0;
 }
-
-
-
-
-
 
 /* =========================================
    MONACO OVERRIDE
 ========================================= */
 
-
 .monaco-editor,
 .monaco-editor-background {
-
-
-    border-radius: 0;
-
-
+  border-radius: 0;
 }
 
-
-
-
-
-
 .monaco-editor {
-
-
-    padding-top: 5px;
-
-
+  padding-top: 5px;
 }
 
 /* =========================================
    DIFF EDITOR
 ========================================= */
 
-
 #diffContainer {
-
-
-    flex: 1;
-
-
-    width: 100%;
-
-
-    min-height: 0;
-
-
-    padding: 12px;
-
-
-    background: var(--bg-color);
-
-
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  padding: 12px;
+  background: var(--bg-color);
 }
-
-
-
-
 
 #diffContainer.hidden {
-
-
-    display: none;
-
-
+  display: none;
 }
-
-
-
-
 
 /* =========================================
    STATUS BAR
 ========================================= */
 
-
 .statusBar {
-
-
-    height: 35px;
-
-
-    width: 100%;
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    justify-content: space-between;
-
-
-    padding: 0 15px;
-
-
-    background: var(--surface-color);
-
-
-    border-top:
-
-
-        1px solid var(--border-color);
-
-
-    color: var(--text-color);
-
-
-    font-size: 13px;
-
-
-    user-select: none;
-
-
+  height: 35px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 13px;
+  user-select: none;
 }
-
-
-
-
 
 .statusLeft,
 .statusCenter,
 .statusRight {
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    gap: 15px;
-
-
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
-
-
-
-
 
 .statusLeft {
-
-
-    min-width: 120px;
-
-
+  min-width: 120px;
 }
-
-
-
-
 
 .statusCenter {
-
-
-    justify-content: center;
-
-
-    flex: 1;
-
-
+  justify-content: center;
+  flex: 1;
 }
-
-
-
-
 
 .statusRight span {
-
-
-    white-space: nowrap;
-
-
-    opacity: .85;
-
-
+  white-space: nowrap;
+  opacity: .85;
 }
-
-
-
-
-
 
 /* =========================================
    STATUS TEXT STATES
 ========================================= */
 
-
 .status-success {
-
-
-    color: var(--success-color);
-
-
+  color: var(--success-color);
 }
-
-
-
 
 .status-error {
-
-
-    color: var(--danger-color);
-
-
+  color: var(--danger-color);
 }
-
-
-
 
 .status-warning {
-
-
-    color: var(--warning-color);
-
-
+  color: var(--warning-color);
 }
-
-
-
-
-
 
 /* =========================================
    NOTIFICATION SYSTEM
 ========================================= */
 
-
 #notificationContainer {
-
-
-    position: fixed;
-
-
-    top: 20px;
-
-
-    right: 20px;
-
-
-    z-index: 99999;
-
-
-    display: flex;
-
-
-    flex-direction: column;
-
-
-    gap: 10px;
-
-
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-
-
-
-
 
 .notification {
-
-
-    min-width: 280px;
-
-
-    padding: 14px 18px;
-
-
-    border-radius: var(--radius);
-
-
-    color: white;
-
-
-    box-shadow: var(--shadow);
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    justify-content: space-between;
-
-
-    animation:
-
-
-        notificationShow .3s ease;
-
-
+  min-width: 280px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  color: white;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation:
+    notificationShow .3s ease;
 }
-
-
-
-
 
 .notification.success {
-
-
-    background: var(--success-color);
-
-
+  background: var(--success-color);
 }
-
-
-
-
 
 .notification.error {
-
-
-    background: var(--danger-color);
-
-
+  background: var(--danger-color);
 }
-
-
-
-
 
 .notification.warning {
-
-
-    background: var(--warning-color);
-
-
+  background: var(--warning-color);
 }
-
-
-
-
 
 .notification.info {
-
-
-    background: var(--primary-color);
-
-
+  background: var(--primary-color);
 }
-
-
-
-
 
 .notification.hide {
-
-
-    animation:
-
-
-        notificationHide .3s ease forwards;
-
-
+  animation:
+    notificationHide .3s ease forwards;
 }
-
-
-
-
-
 
 @keyframes notificationShow {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
 
-
-    from {
-
-
-        opacity: 0;
-
-
-        transform: translateX(50px);
-
-
-    }
-
-
-
-    to {
-
-
-        opacity: 1;
-
-
-        transform: translateX(0);
-
-
-    }
-
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
-
-
-
 
 @keyframes notificationHide {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-
-    from {
-
-
-        opacity: 1;
-
-
-        transform: translateX(0);
-
-
-    }
-
-
-
-    to {
-
-
-        opacity: 0;
-
-
-        transform: translateX(50px);
-
-
-    }
-
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
 }
-
-
-
-
-
-
 
 /* =========================================
    CONFIRM DIALOG
 ========================================= */
 
-
 .confirm-overlay {
-
-
-    position: fixed;
-
-
-    inset: 0;
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    justify-content: center;
-
-
-    background:
-
-
-        rgba(0, 0, 0, .55);
-
-
-    opacity: 0;
-
-
-    pointer-events: none;
-
-
-    transition: var(--transition);
-
-
-    z-index: 99998;
-
-
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    rgba(0, 0, 0, .55);
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+  z-index: 99998;
 }
-
-
-
-
 
 .confirm-overlay.show {
-
-
-    opacity: 1;
-
-
-    pointer-events: auto;
-
-
+  opacity: 1;
+  pointer-events: auto;
 }
-
-
-
-
 
 .confirm-overlay.hide {
-
-
-    opacity: 0;
-
-
+  opacity: 0;
 }
-
-
-
-
 
 .confirm-box {
-
-
-    width: 360px;
-
-
-    max-width: 90%;
-
-
-    padding: 25px;
-
-
-    border-radius: var(--radius);
-
-
-    background: var(--surface-color);
-
-
-    color: var(--text-color);
-
-
-    box-shadow: var(--shadow);
-
-
-    transform: scale(.9);
-
-
-    transition: var(--transition);
-
-
+  width: 360px;
+  max-width: 90%;
+  padding: 25px;
+  border-radius: var(--radius);
+  background: var(--surface-color);
+  color: var(--text-color);
+  box-shadow: var(--shadow);
+  transform: scale(.9);
+  transition: var(--transition);
 }
-
-
-
-
 
 .confirm-overlay.show .confirm-box {
-
-
-    transform: scale(1);
-
-
+  transform: scale(1);
 }
-
-
-
-
 
 .confirm-message {
-
-
-    text-align: center;
-
-
-    line-height: 1.8;
-
-
-    margin-bottom: 25px;
-
-
-    font-size: 16px;
-
-
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 16px;
 }
-
-
-
-
 
 .confirm-actions {
-
-
-    display: flex;
-
-
-    justify-content: center;
-
-
-    gap: 12px;
-
-
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
-
-
-
-
 
 .confirm-actions button {
-
-
-    height: 38px;
-
-
-    padding: 0 25px;
-
-
-    border: none;
-
-
-    border-radius: var(--radius);
-
-
-    cursor: pointer;
-
-
-    transition: var(--transition);
-
-
+  height: 38px;
+  padding: 0 25px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
 }
-
-
-
-
 
 .confirm-ok {
-
-
-    background: var(--primary-color);
-
-
-    color: white;
-
-
+  background: var(--primary-color);
+  color: white;
 }
-
-
-
-
 
 .confirm-ok:hover {
-
-
-    background: var(--primary-hover);
-
-
+  background: var(--primary-hover);
 }
-
-
-
-
 
 .confirm-cancel {
-
-
-    background: var(--border-color);
-
-
-    color: var(--text-color);
-
-
+  background: var(--border-color);
+  color: var(--text-color);
 }
-
-
-
-
 
 .confirm-cancel:hover {
-
-
-    opacity: .8;
-
-
+  opacity: .8;
 }
-
 
 /* =========================================
    MONACO SCROLLBAR
 ========================================= */
 
-
 .monaco-scrollable-element::-webkit-scrollbar {
-
-
-    width: 10px;
-
-
-    height: 10px;
-
-
+  width: 10px;
+  height: 10px;
 }
-
-
 
 .monaco-scrollable-element::-webkit-scrollbar-track {
-
-
-    background: transparent;
-
-
+  background: transparent;
 }
-
-
 
 .monaco-scrollable-element::-webkit-scrollbar-thumb {
-
-
-    background:
-
-        rgba(128, 128, 128, .45);
-
-
-    border-radius: 10px;
-
-
+  background:
+    rgba(128, 128, 128, .45);
+  border-radius: 10px;
 }
-
-
 
 .monaco-scrollable-element::-webkit-scrollbar-thumb:hover {
-
-
-    background:
-
-        rgba(128, 128, 128, .7);
-
-
+  background:
+    rgba(128, 128, 128, .7);
 }
-
-
-
-
-
 
 /* =========================================
    GENERAL SCROLLBAR
 ========================================= */
 
-
 ::-webkit-scrollbar {
-
-
-    width: 10px;
-
-
-    height: 10px;
-
-
+  width: 10px;
+  height: 10px;
 }
-
-
 
 ::-webkit-scrollbar-track {
-
-
-    background: var(--bg-color);
-
-
+  background: var(--bg-color);
 }
-
-
 
 ::-webkit-scrollbar-thumb {
-
-
-    background:
-
-        rgba(128, 128, 128, .45);
-
-
-    border-radius: 10px;
-
-
+  background:
+    rgba(128, 128, 128, .45);
+  border-radius: 10px;
 }
-
-
 
 ::-webkit-scrollbar-thumb:hover {
-
-
-    background:
-
-        rgba(128, 128, 128, .7);
-
-
+  background:
+    rgba(128, 128, 128, .7);
 }
-
-
-
-
-
 
 /* =========================================
    EMPTY / HIDDEN ELEMENTS
 ========================================= */
 
-
 .hidden {
-
-
-    display: none !important;
-
-
+  display: none !important;
 }
-
-
-
-
-
 
 /* =========================================
    DISABLED STATE
 ========================================= */
 
-
 .disabled {
-
-
-    opacity: .5;
-
-
-    pointer-events: none;
-
-
+  opacity: .5;
+  pointer-events: none;
 }
-
-
-
-
-
 
 /* =========================================
    LOADING STATE
 ========================================= */
 
-
 .loading {
-
-
-    position: relative;
-
-
-    pointer-events: none;
-
-
-    opacity: .7;
-
-
+  position: relative;
+  pointer-events: none;
+  opacity: .7;
 }
-
-
 
 .loading::after {
-
-
-    content: "";
-
-
-    position: absolute;
-
-
-    width: 18px;
-
-
-    height: 18px;
-
-
-    border-radius: 50%;
-
-
-    border:
-
-
-        3px solid transparent;
-
-
-    border-top-color:
-
-
-        var(--primary-color);
-
-
-    animation:
-
-        spin .8s linear infinite;
-
-
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border:
+    3px solid transparent;
+  border-top-color:
+    var(--primary-color);
+  animation:
+    spin .8s linear infinite;
 }
-
-
-
-
 
 @keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
 
-
-    from {
-
-
-        transform: rotate(0deg);
-
-
-    }
-
-
-    to {
-
-
-        transform: rotate(360deg);
-
-
-    }
-
-
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-
-
-
-
 
 /* =========================================
    HOVER EFFECTS
 ========================================= */
 
-
 .editorBox:hover {
-
-
-    border-color:
-
-        var(--primary-color);
-
-
+  border-color:
+    var(--primary-color);
 }
-
-
-
-
 
 .editorBox {
-
-
-    transition:
-
-
-        border-color var(--transition),
-
-
-        box-shadow var(--transition);
-
-
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
-
-
-
-
 
 .editorBox:focus-within {
-
-
-    box-shadow:
-
-
-        0 0 0 2px rgba(37, 99, 235, .15);
-
-
+  box-shadow:
+    0 0 0 2px rgba(37, 99, 235, .15);
 }
-
-
-
-
-
 
 /* =========================================
    RESPONSIVE DESIGN
 ========================================= */
 
-
 @media(max-width:1200px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-
-
-    .toolbar {
-
-
-        flex-direction: column;
-
-
-        align-items: stretch;
-
-
-    }
-
-
-
-    .toolbarLeft,
-    .toolbarRight {
-
-
-        justify-content: center;
-
-
-        flex-wrap: wrap;
-
-
-    }
-
-
-
+  .toolbarLeft,
+  .toolbarRight {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
-
-
-
-
-
-
 
 @media(max-width:900px) {
 
+  html,
+  body {
+    overflow: auto;
+  }
 
+  .editorPanel {
+    flex-direction: column;
+  }
 
-    html,
-    body {
+  .editorBox {
+    min-height: 350px;
+  }
 
+  .statusBar {
+    height: auto;
+    min-height: 40px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
 
-        overflow: auto;
-
-
-    }
-
-
-
-
-    .editorPanel {
-
-
-        flex-direction: column;
-
-
-    }
-
-
-
-    .editorBox {
-
-
-        min-height: 350px;
-
-
-    }
-
-
-
-    .statusBar {
-
-
-        height: auto;
-
-
-        min-height: 40px;
-
-
-        flex-direction: column;
-
-
-        gap: 8px;
-
-
-        padding: 8px;
-
-
-    }
-
-
-
-    .statusLeft,
-    .statusCenter,
-    .statusRight {
-
-
-        justify-content: center;
-
-
-        width: 100%;
-
-
-        flex-wrap: wrap;
-
-
-    }
-
-
-
+  .statusLeft,
+  .statusCenter,
+  .statusRight {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
-
-
-
-
-
-
 
 @media(max-width:600px) {
+  header h1 {
+    font-size: 24px;
+    padding-left: 15px;
+  }
 
+  .toolbar {
+    padding: 10px;
+  }
 
+  .toolbarLeft,
+  .toolbarRight {
+    flex-direction: column;
+    width: 100%;
+  }
 
-    header h1 {
+  .toolbar button,
+  .toolbar select {
+    width: 100%;
+  }
 
-
-        font-size: 24px;
-
-
-        padding-left: 15px;
-
-
-    }
-
-
-
-    .toolbar {
-
-
-        padding: 10px;
-
-
-    }
-
-
-
-    .toolbarLeft,
-    .toolbarRight {
-
-
-        flex-direction: column;
-
-
-        width: 100%;
-
-
-    }
-
-
-
-    .toolbar button,
-    .toolbar select {
-
-
-        width: 100%;
-
-
-    }
-
-
-
-
-    .editorPanel {
-
-
-        padding: 6px;
-
-
-        gap: 6px;
-
-
-    }
-
-
-
+  .editorPanel {
+    padding: 6px;
+    gap: 6px;
+  }
 }
-
-
-
-
-
 
 /* =========================================
    PRINT / SELECTION
 ========================================= */
 
-
 ::selection {
-
-
-    background:
-
-        var(--primary-color);
-
-
-    color: white;
-
-
+  background:
+    var(--primary-color);
+  color: white;
 }
