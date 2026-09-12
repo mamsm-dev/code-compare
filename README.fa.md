@@ -77,6 +77,7 @@ code-compare/
 │   └── ...
 ├── index.html
 ├── preview.png
+├── README.fa.md
 └── README.md
 ```
 
