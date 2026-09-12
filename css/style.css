@@ -322,8 +322,8 @@ main {
 ========================================= */
 
 .statusBar {
-  height: 35px;
-  width: 100%;
+  height: auto;
+  min-height: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -333,6 +333,8 @@ main {
   color: var(--text-color);
   font-size: 13px;
   user-select: none;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .statusLeft,
@@ -350,6 +352,11 @@ main {
 .statusCenter {
   justify-content: center;
   flex: 1;
+}
+
+.statusRight {
+  flex-wrap: wrap;
+  gap: 8px 15px;
 }
 
 .statusRight span {
@@ -663,7 +670,6 @@ main {
     flex-wrap: wrap;
   }
 }
-
 @media(max-width:900px) {
 
   html,
@@ -680,19 +686,51 @@ main {
   }
 
   .statusBar {
-    height: auto;
-    min-height: 40px;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
+    min-height: 50px;
+    padding: 8px 12px;
   }
 
   .statusLeft,
   .statusCenter,
   .statusRight {
-    justify-content: center;
     width: 100%;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .statusRight span:nth-child(n+5) {
+    display: none;
+  }
+}
+
+@media(max-width:768px) {
+  header h1 {
+    height: 70px;
+    font-size: 22px;
+    padding-left: 20px;
+  }
+
+  .toolbarLeft,
+  .toolbarRight {
+    gap: 12px;
+  }
+
+  .editorPanel {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .editorBox {
+    min-height: 300px;
+  }
+
+  .statusBar {
+    font-size: 12px;
+  }
+
+  .statusRight span:nth-child(n+4) {
+    display: none;
   }
 }
 
@@ -746,10 +784,8 @@ main {
   }
 
   .statusBar {
-    height: auto;
-    min-height: 50px;
+    min-height: 60px;
     flex-wrap: wrap;
-    gap: 4px;
     padding: 6px 10px;
     font-size: 11px;
   }
@@ -759,8 +795,7 @@ main {
   .statusRight {
     width: 100%;
     justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px 12px;
   }
 
   .statusLeft {
